@@ -165,12 +165,18 @@ LOCATION_NAME_TO_ID = {
     "Galactic Central Point Level Clear": 180,
     "Home Level Clear": 181,
     # Tutorial Pages
-    "Coyote Time Tutorial": 200,
-    "Box Boosting Tutorial": 201,
-    "Fast Falling Tutorial": 202,
-    "Steep Slope Kicks Tutorial": 203,
-    "Bubble Jumps Tutorial": 204,
-    "Fireworks Tutorial": 205,
+    "Coyote Time Tutorial Complete": 200,
+    "Box Boosting Tutorial Complete": 201,
+    "Fast Falling Tutorial Complete": 202,
+    "Steep Slope Kicks Tutorial Complete": 203,
+    "Bubble Jumps Tutorial Complete": 204,
+    "Fireworks Tutorial Complete": 205,
+    "Coyote Time Tutorial Opened": 206,
+    "Box Boosting Tutorial Opened": 207,
+    "Fast Falling Tutorial Opened": 208,
+    "Steep Slope Kicks Tutorial Opened": 209,
+    "Bubble Jumps Tutorial Opened": 210,
+    "Fireworks Tutorial Opened": 211,
     #Tutorial Panels
     "Verticality Tutorial Panel": 250,
     "The Library Tutorial Panel 1": 251,
@@ -179,6 +185,18 @@ LOCATION_NAME_TO_ID = {
     "Forgotten Archives Tutorial Panel": 254,
     "Autumnal Aether Tutorial Panel": 255,
     "Welcome To The Void Tutorial Panel": 256,
+    #Bestiary
+    "Open The Bestiary To Vivi": 270,
+    "Open The Bestiary To The Fist": 271,
+    "Open The Bestiary To Gube": 272,
+    "Open The Bestiary To Slider": 273,
+    "Open The Bestiary To The Wizard": 274,
+    "Open The Bestiary To Gorbs": 275,
+    "Open The Bestiary To The King": 276,
+    "Open The Bestiary To Pixies": 277,
+    "Open The Bestiary To Fairy Drones": 278,
+    "Open The Bestiary To Gube Ranger": 279,
+    "Open The Bestiary To Pam": 280,
     #Boss Hits
     "Fist Fight Heart 1": 300,
     "Fist Fight Heart 2": 301,
@@ -441,8 +459,8 @@ LOCATION_NAME_TO_ID = {
     "Nyctophobia Checkpoint 1": 917,
     "Shifting Walls Checkpoint 1": 918,
     "Shifting Walls Checkpoint 2": 919,
-    "Autumnal Aaether Checkpoint 1": 920,
-    "Autumnal Aaether Checkpoint 2": 921,
+    "Autumnal Aether Checkpoint 1": 920,
+    "Autumnal Aether Checkpoint 2": 921,
     "Among The Stars Checkpoint 1": 922,
     "Heels Over Head Checkpoint 1": 923,
     "The Hive Checkpoint 1": 924,
@@ -620,15 +638,21 @@ LOCATION_NAME_TO_REGION = {
     "The Sky Is Falling Level Clear": "The Sky Is Falling Room 5",
     "The Looking Glass Level Clear": "The Looking Glass Room 5",
     "The Looking Glass Universal Bearing Collectible": "Universal Bearing Collectible Introduction",
-    "Galactic Central Point Level Clear": "Galactic Central Point Boss Arena 37",
-    "Home Level Clear": "Home Room 5",
+    "Galactic Central Point Level Clear": "Galactic Central Point Boss Arena",
+    "Home Level Clear": "Home Room 6",
     # Tutorial Pages
-    "Coyote Time Tutorial": "Menu",
-    "Box Boosting Tutorial": "Menu",
-    "Fast Falling Tutorial": "Menu",
-    "Steep Slope Kicks Tutorial": "Menu",
-    "Bubble Jumps Tutorial": "Menu",
-    "Fireworks Tutorial": "Menu",
+    "Coyote Time Tutorial Complete": "Menu",
+    "Box Boosting Tutorial Complete": "Menu",
+    "Fast Falling Tutorial Complete": "Menu",
+    "Steep Slope Kicks Tutorial Complete": "Menu",
+    "Bubble Jumps Tutorial Complete": "Menu",
+    "Fireworks Tutorial Complete": "Menu",
+    "Coyote Time Tutorial Opened": "Menu",
+    "Box Boosting Tutorial Opened": "Menu",
+    "Fast Falling Tutorial Opened": "Menu",
+    "Steep Slope Kicks Tutorial Opened": "Menu",
+    "Bubble Jumps Tutorial Opened": "Menu",
+    "Fireworks Tutorial Opened": "Menu",
     #Tutorial Panels
     "Verticality Tutorial Panel": "Verticality Room 2B",
     "The Library Tutorial Panel 1": "The Library Room 1",
@@ -637,6 +661,18 @@ LOCATION_NAME_TO_REGION = {
     "Forgotten Archives Tutorial Panel": "Forgotten Archives Room 2",
     "Autumnal Aether Tutorial Panel": "Autumnal Aether Room 2",
     "Welcome To The Void Tutorial Panel": "Welcome To The Void Room 2",
+    # Bestiary
+    "Open The Bestiary To Vivi": "Menu",
+    "Open The Bestiary To The Fist": "Menu",
+    "Open The Bestiary To Gube": "Menu",
+    "Open The Bestiary To Slider": "Menu",
+    "Open The Bestiary To The Wizard": "Menu",
+    "Open The Bestiary To Gorbs": "Menu",
+    "Open The Bestiary To The King": "Menu",
+    "Open The Bestiary To Pixies": "Menu",
+    "Open The Bestiary To Fairy Drones": "Menu",
+    "Open The Bestiary To Gube Ranger": "Menu",
+    "Open The Bestiary To Pam": "Menu",
     #Boss Hits
     "Fist Fight Heart 1": "Fist Fight Boss Arena",
     "Fist Fight Heart 2": "Fist Fight Boss Arena",
@@ -899,8 +935,8 @@ LOCATION_NAME_TO_REGION = {
     "Nyctophobia Checkpoint 1": "Nyctophobia Room 4",
     "Shifting Walls Checkpoint 1": "Shifting Walls Room 3",
     "Shifting Walls Checkpoint 2": "Shifting Walls Room 4",
-    "Autumnal Aaether Checkpoint 1": "Autumnal Aether Room 1",
-    "Autumnal Aaether Checkpoint 2": "Autumnal Aether Room 2",
+    "Autumnal Aether Checkpoint 1": "Autumnal Aether Room 1",
+    "Autumnal Aether Checkpoint 2": "Autumnal Aether Room 2",
     "Among The Stars Checkpoint 1": "Among The Stars Room 3",
     "Heels Over Head Checkpoint 1": "Heels Over Head Room 2",
     "The Hive Checkpoint 1": "The Hive Room 2",
@@ -936,7 +972,6 @@ def create_all_locations(world: FantasticFistWorld) -> None:
     create_boss_locations(world)
     create_room_locations(world)
     create_checkpoint_locations(world)
-    create_victory_location(world)
 
 def create_location(world: FantasticFistWorld, location_id: int) -> None:
     location_name: str = ID_TO_LOCATION_NAME[location_id]
@@ -960,34 +995,50 @@ def create_locked_location(world: FantasticFistWorld, location_id: int, item_nam
 
     region.locations.append(location)
 
+def create_victory_location(world: FantasticFistWorld, location_id: int):
+    location_name: str = ID_TO_LOCATION_NAME[location_id]
+    region_name: str = LOCATION_NAME_TO_REGION[location_name]
+
+    victory_region = world.get_region(region_name)
+
+    victory_region.add_event("Victory", location_type=FantasticFistLocation, item_type=items.FantasticFistItem)
+
 def create_coin_locations(world: FantasticFistWorld) -> None:
     for location_id in range(1, 101):
         create_location(world, location_id)
 
 def create_exit_locations(world: FantasticFistWorld) -> None:
-    if world.options.paths == 0:
-        #Vanilla paths
-        for location_id in range(130, 182):
-            exit_region: str = LOCATION_NAME_TO_REGION[ID_TO_LOCATION_NAME[location_id]]
-            level_id: str = ""
-            if exit_region == "The Library Room 1":
-                for entrance in world.randomized_entrances:
-                    if entrance.end_node.node_name == "The Library Room 1":
-                        level_id = entrance.start_node.node_name
-            else:
-                current_region: str = exit_region
-                has_earlier_room: bool = True
-                while has_earlier_room:
-                    has_earlier_room = False
-                    for door in world.randomized_doors:
-                        if door.end_node.node_name == current_region:
-                            current_region = door.start_node.node_name
-                            has_earlier_room = True
-                            break
-                for entrance in world.randomized_entrances:
-                    if entrance.end_node.node_name == current_region:
-                        level_id = entrance.start_node.node_name
-            
+    for location_id in range(130, 182):
+        exit_region: str = LOCATION_NAME_TO_REGION[ID_TO_LOCATION_NAME[location_id]]
+        level_id: str = ""
+        if exit_region == "The Library Room 1":
+            for entrance in world.randomized_entrances:
+                if entrance.end_node.node_name == "The Library Room 1":
+                    level_id = entrance.start_node.node_name
+        else:
+            current_region: str = exit_region
+            has_earlier_room: bool = True
+            while has_earlier_room:
+                has_earlier_room = False
+                for door in world.randomized_doors:
+                    if door.end_node.node_name == current_region:
+                        current_region = door.start_node.node_name
+                        has_earlier_room = True
+                        break
+            for entrance in world.randomized_entrances:
+                if entrance.end_node.node_name == current_region:
+                    level_id = entrance.start_node.node_name
+
+        #Set Victory Locations
+        if level_id == "5-4" and world.options.goal == 0:
+            create_victory_location(world, location_id)
+        elif location_id == 179 and world.options.goal == 1:
+            create_victory_location(world, location_id)
+        elif level_id == "1-0" and world.options.goal == 2:
+            create_victory_location(world, location_id)
+
+        if world.options.paths == 0:
+            #Vanilla Paths
             if level_id == "1-0" or level_id == "5-4":
                 # Neither Galactic Central Point nor Home have paths
                 create_location(world, location_id)
@@ -1044,17 +1095,18 @@ def create_exit_locations(world: FantasticFistWorld) -> None:
                     create_locked_location(world, location_id, level_path)
                 else:
                     create_location(world, location_id)
-    else:
-         for location_id in range(130, 182):
+        else:
             if location_id == 179 and world.options.goal == 2:
                 create_locked_location(world, 179, "1-1 Home Exit Path")
             else:
                 create_location(world, location_id)
 
 def create_tutorial_locations(world: FantasticFistWorld) -> None:
-    for location_id in range(200, 206):
+    for location_id in range(200, 212):
         create_location(world, location_id)
     for location_id in range(250, 257):
+        create_location(world, location_id)
+    for location_id in range(270, 281):
         create_location(world, location_id)
 
 def create_boss_locations(world: FantasticFistWorld) -> None:
@@ -1086,13 +1138,3 @@ def create_checkpoint_locations(world: FantasticFistWorld) -> None:
     if world.options.checkpointsanity:
         for location_id in range (900, 942):
             create_location(world, location_id)
-
-def create_victory_location(world: FantasticFistWorld) -> None:
-    victory_region: Region
-    if world.options.goal == 0:
-        victory_region = world.get_region("Galactic Central Point Boss Arena")
-    elif world.options.goal == 1:
-        victory_region = world.get_region("Universal Bearing Collectible Introduction")
-    else:
-        victory_region = world.getrandregion("Home Room 5")
-    victory_region.add_event("Victory", location_type=FantasticFistLocation, item_type=items.FantasticFistItem)

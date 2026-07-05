@@ -25,6 +25,9 @@ class FantasticFistWorld(World):
 
     randomized_entrances: list[regions.Edge] = []
     randomized_doors: list[regions.Edge] = []
+    true_coin_amount: int = 0
+    secret_coin_requirements: list[int] = []
+    boss_coin_requirements: list[int] = []
 
     def create_regions(self) -> None:
         regions.create_and_connect_regions(self)
@@ -43,11 +46,52 @@ class FantasticFistWorld(World):
         return items.get_random_filler_item_name(self)
     
     def fill_slot_data(self) -> Mapping[str, Any]:
-        return self.options.as_dict(
-            "goal"
+        options = self.options.as_dict(
+            "deathlink",
+            "deathlink_amnesty",
+            "goal",
+            "open_world",
+            "roomsanity",
+            "checkpointsanity"
         )
+        for i in range(7):
+            options["secret_coin_req_" + str(i)] = self.secret_coin_requirements[i]
+        for i in range(5):
+            options["boss_coin_req_" + str(i)] = self.boss_coin_requirements[i]
+
+        entrances: list[str] = []
+        for entrance in self.randomized_entrances:
+            entrances.append(entrance.start_node.node_name)
+            entrances.append(entrance.end_node.node_name)
+
+        options["entrances"] = entrances
+
+        doors: list[str] = []
+        for door in self.randomized_doors:
+            doors.append(door.start_node.node_name)
+            doors.append(door.end_node.node_name)
+
+        options["doors"] = doors
+        return options
 
     def write_spoiler(self, spoiler_handle: TextIO) -> None:
+        spoiler_handle.write("True Coin Amount: " + str(self.true_coin_amount) + "\n")
+        spoiler_handle.write("Secret Exit Coin Amount Requirments: [")
+        for req in range(len(self.secret_coin_requirements)):
+            spoiler_handle.write(str(self.secret_coin_requirements[req]))
+            if req == 6:
+                spoiler_handle.write("]\n")
+            else:
+                spoiler_handle.write(", ")
+
+        spoiler_handle.write("Boss Level Coin Amount Requirments: [")
+        for req in range(len(self.boss_coin_requirements)):
+            spoiler_handle.write(str(self.boss_coin_requirements[req]))
+            if req == 4:
+                spoiler_handle.write("]\n")
+            else:
+                spoiler_handle.write(", ")
+
         spoiler_handle.write("----------MAP----------\n")
         for level_id in regions.ID_TO_LEVEL:
             level: regions.Level = regions.ID_TO_LEVEL[level_id]

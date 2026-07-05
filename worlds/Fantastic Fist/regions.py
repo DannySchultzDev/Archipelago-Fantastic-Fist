@@ -201,6 +201,18 @@ def create_first_rooms_entrance_rando_enabled(world: FantasticFistWorld, nodes: 
     while len(level_nodes) > 0 and len(first_rooms) > 0:
         random_first_room: Node = first_rooms[world.random.randint(0, len(first_rooms) - 1)]
         curr_level_node: Node = level_nodes[0]
+
+        #If paths are vanilla secret exits need special care
+        if world.options.paths == 0 and ["1-2", "1-4", "2-1", "2-C", "3-1", "4-1"].__contains__(curr_level_node.node_name):
+            while random_first_room.level_id == 10 or ((world.options.door_rando == 2 or world.options.door_rando == 3) and not [1, 3, 11, 19, 21, 30].__contains__(random_first_room.level_id)):
+                #The Library can never have secret exits since it's one room.
+                #If door rando does not pull rooms from other levels, the level must contain a secret exit if the entrance has a secret exit.
+                random_first_room: Node = first_rooms[world.random.randint(0, len(first_rooms) - 1)]
+        else:
+            while (world.options.door_rando == 2 or world.options.door_rando == 3) and [1, 3, 11, 19, 21, 30].__contains__(random_first_room.level_id):
+                #Make sure other levels don't use up levels with secret exits.
+                random_first_room: Node = first_rooms[world.random.randint(0, len(first_rooms) - 1)]
+
         edges.append(Edge(curr_level_node, random_first_room, False))
         first_rooms.remove(random_first_room)
         level_nodes.remove(curr_level_node)
@@ -315,6 +327,11 @@ def connect_rooms_door_rando_full_balanced(world: FantasticFistWorld, nodes: lis
     throne_room_last_room: Node = get_node_from_name(rooms, append_room_number(ID_TO_LEVEL[27].level_name, 8))
     rooms.remove(throne_room_last_room)
 
+    home_last_room: Node
+    if world.options.goal == 2:
+        home_last_room: Node = get_node_from_name(last_rooms, append_room_number(ID_TO_LEVEL[44].level_name, 6))
+        last_rooms .remove(home_last_room)
+
     vanilla_paths: bool = world.options.paths == 0
     levels_that_need_secret_exits: list[int] = []
     last_rooms_with_secret_exits: list[Node] = []
@@ -355,7 +372,8 @@ def connect_rooms_door_rando_full_balanced(world: FantasticFistWorld, nodes: lis
 
     balanced_throne_room_boss_exit_level: list[Node] = levels[world.random.randint(0, len(levels) - 1)]
     balanced_throne_room_boss_exit_level_id: int = balanced_throne_room_boss_exit_level[0].level_id
-    while balanced and (balanced_throne_room_boss_exit_level_id == 43 or balanced_throne_room_boss_exit_level_id == 9):
+    while balanced and (balanced_throne_room_boss_exit_level_id == 43 or balanced_throne_room_boss_exit_level_id == 10 or
+                        (world.options.goal == 2 and balanced_throne_room_boss_exit_level_id == 44)):
         balanced_throne_room_boss_exit_level: list[Node] = levels[world.random.randint(0, len(levels) - 1)]
         balanced_throne_room_boss_exit_level_id: int = balanced_throne_room_boss_exit_level[0].level_id
 
@@ -457,6 +475,10 @@ def connect_rooms_door_rando_full_balanced(world: FantasticFistWorld, nodes: lis
         if level[0].level_id == 43:
             #Galactic Central Point has the final boss
             level.extend(final_boss_rooms)
+
+        elif level[0].level_id == 44 and world.options.goal == 2:
+            #Home is the goal, the last room of home should be vanilla
+            level.append(home_last_room)
 
         elif vanilla_paths and does_level_need_secret_exit:
             last_room: Node = last_rooms_with_secret_exits[world.random.randint(0, len(last_rooms_with_secret_exits) - 1)]

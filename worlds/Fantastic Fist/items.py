@@ -685,12 +685,26 @@ def create_all_items(world: FantasticFistWorld) -> None:
     number_of_unfilled_locations = len(world.multiworld.get_unfilled_locations(world.player))
     needed_number_of_filler_items = number_of_unfilled_locations - number_of_items
 
-    coin_amt = world.options.max_coin_amount
+    coin_amt: int = world.options.max_coin_amount.value
 
     if coin_amt > needed_number_of_filler_items:
         coin_amt = needed_number_of_filler_items
 
     itempool += [world.create_item("Coin") for _ in range(coin_amt)]
+
+    world.true_coin_amount = coin_amt
+    world.secret_coin_requirements.append(int(coin_amt * world.options.first_secret_exit_coin_requirement / 100))
+    world.secret_coin_requirements.append(int(coin_amt * world.options.second_secret_exit_coin_requirement / 100))
+    world.secret_coin_requirements.append(int(coin_amt * world.options.third_secret_exit_coin_requirement / 100))
+    world.secret_coin_requirements.append(int(coin_amt * world.options.fourth_secret_exit_coin_requirement / 100))
+    world.secret_coin_requirements.append(int(coin_amt * world.options.fifth_secret_exit_coin_requirement / 100))
+    world.secret_coin_requirements.append(int(coin_amt * world.options.sixth_secret_exit_coin_requirement / 100))
+    world.secret_coin_requirements.append(int(coin_amt * world.options.seventh_secret_exit_coin_requirement / 100))
+    world.boss_coin_requirements.append(int(coin_amt * world.options.first_boss_coin_requirement / 100))
+    world.boss_coin_requirements.append(int(coin_amt * world.options.second_boss_coin_requirement / 100))
+    world.boss_coin_requirements.append(int(coin_amt * world.options.third_boss_coin_requirement / 100))
+    world.boss_coin_requirements.append(int(coin_amt * world.options.fourth_boss_coin_requirement / 100))
+    world.boss_coin_requirements.append(int(coin_amt * world.options.fifth_boss_coin_requirement / 100))
 
     needed_number_of_filler_items -= coin_amt
 

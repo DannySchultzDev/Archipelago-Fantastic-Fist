@@ -2,6 +2,24 @@ from dataclasses import dataclass
 
 from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle
 
+class Deathlink(Toggle):
+    """
+    When you die, everyone who enabled death link dies. Of course, the reverse is true too.
+    """
+    display_name = "Deathlink"
+
+class DeathlinkAmnesty(Range):
+    """
+    How many deaths it takes to send a Deathlink.
+    """
+
+    display_name = "Deathlink Amnesty"
+
+    range_start = 0
+    range_end = 50
+
+    default = 10
+
 class Goal(Choice):
     """
     The goal of the game.
@@ -24,7 +42,7 @@ class Difficulty(Choice):
     What tricks will be factored into the game's logic.
     Intended means that if an item makes a level easier in any way, it is required for logic.
     Simple means that easily skipable items will not be required for logic.
-    Advanced means that any skipable items will not required for logic.
+    Advanced means that any skipable items will not be required for logic.
     Glitched means that any skipable items including glitches will not be required for logic.
     """
 
@@ -73,7 +91,7 @@ class Paths(Choice):
     option_randomized = 1
     option_progressive = 2
 
-    default = option_progressive
+    default = option_vanilla
 
 class EntranceRando(Toggle):
     """
@@ -205,10 +223,10 @@ class SixthSecretExitCoinRequirement(Range):
 
 class SeventhSecretExitCoinRequirement(Range):
     """
-    What percentage of coins are needed to access the seventh secret exit.
+    What percentage of coins are needed to access the secret exit in The Looking Glass.
     """
 
-    display_name = "Seventh Secret Exit Coin Requirement"
+    display_name = "The Looking Glass Secret Exit Coin Requirement"
 
     range_start = 0
     range_end = 100
@@ -770,6 +788,8 @@ class VivisFlashlight(Choice):
 
 @dataclass
 class FantasticFistOptions(PerGameCommonOptions):
+    deathlink: Deathlink
+    deathlink_amnesty: DeathlinkAmnesty
     goal: Goal
     difficulty: Difficulty
     open_world: OpenWorld
