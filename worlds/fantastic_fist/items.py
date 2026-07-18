@@ -717,7 +717,7 @@ def create_item_group(world: FantasticFistWorld, itempool: list[Item], start_id:
         option_selected = world.options.default_item_groups
 
     if option_selected == 1:
-        # The item group is seperated.
+        # The item group is separated.
         itempool += [world.create_item(ID_TO_ITEM_NAME[start_id + 2 + k]) for k in range(choice_amt)]
         if include_extra:
             itempool += [world.create_item(ID_TO_ITEM_NAME[start_id + 2 + k]) for k in range(choice_amt)]

@@ -25,6 +25,7 @@ class FantasticFistWorld(World):
 
     randomized_entrances: list[regions.Edge] = []
     randomized_doors: list[regions.Edge] = []
+    secret_exit_room_order: list[int] = []
     true_coin_amount: int = 0
     secret_coin_requirements: list[int] = []
     boss_coin_requirements: list[int] = []
@@ -58,6 +59,8 @@ class FantasticFistWorld(World):
             options["secret_coin_req_" + str(i)] = self.secret_coin_requirements[i]
         for i in range(5):
             options["boss_coin_req_" + str(i)] = self.boss_coin_requirements[i]
+
+        options["secret_exit_order"] = self.secret_exit_room_order
 
         entrances: list[str] = []
         for entrance in self.randomized_entrances:

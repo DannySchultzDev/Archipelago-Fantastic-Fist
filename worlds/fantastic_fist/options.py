@@ -309,12 +309,12 @@ class DefaultItemGroups(Choice):
 
     display_name = "Default Item Groups"
 
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
 
-    default = option_seperated
+    default = option_separated
 
 class DefaultExtraItems(Choice):
     """
@@ -348,7 +348,7 @@ class DestructibleBlocks(Choice):
     display_name = "Destructible Blocks"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -365,7 +365,7 @@ class PhysicsBlocks(Choice):
     display_name = "Physics Blocks"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -382,7 +382,7 @@ class SlidingBlocks(Choice):
     display_name = "Sliding Blocks"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -399,7 +399,7 @@ class BossBlocks(Choice):
     display_name = "Boss Blocks"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -415,7 +415,7 @@ class PopBlocks(Choice):
     display_name = "Pop Blocks"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -432,7 +432,7 @@ class Bumpers(Choice):
     display_name = "Bumpers"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -448,7 +448,7 @@ class Switches(Choice):
     display_name = "Switches"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -465,7 +465,7 @@ class PunchappearBlocks(Choice):
     display_name = "Punchappear Blocks"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -481,7 +481,7 @@ class SkullBlocks(Choice):
     display_name = "Skull Blocks"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -510,7 +510,7 @@ class SkullRings(Choice):
     display_name = "Skull Rings"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -539,7 +539,7 @@ class Enemies(Choice):
     display_name = "Enemies"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -568,7 +568,7 @@ class ViviBlocks(Choice):
     display_name = "Vivi Blocks"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -586,7 +586,7 @@ class BlockLaunchers(Choice):
     display_name = "Block Launchers"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -603,7 +603,7 @@ class Launchers(Choice):
     display_name = "Launchers"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -620,7 +620,7 @@ class Hazards(Choice):
     display_name = "Hazards"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -650,7 +650,7 @@ class Bubbles(Choice):
     display_name = "Bubbles"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -667,7 +667,7 @@ class Balloons(Choice):
     display_name = "Balloons"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -683,7 +683,7 @@ class Bombs(Choice):
     display_name = "Bombs"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -699,7 +699,7 @@ class HiveBlocks(Choice):
     display_name = "Hive Blocks"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -716,7 +716,7 @@ class Keys(Choice):
     display_name = "Keys"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -734,7 +734,7 @@ class GravityItems(Choice):
     display_name = "Gravity Items"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -750,7 +750,7 @@ class Lifts(Choice):
     display_name = "Lifts"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4
@@ -766,7 +766,7 @@ class Semisolids(Choice):
     display_name = "Semisolids"
 
     option_default = 0
-    option_seperated = 1
+    option_separated = 1
     option_progressive = 2
     option_grouped = 3
     option_precollected = 4

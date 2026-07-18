@@ -3127,26 +3127,32 @@ def set_all_rules(world: FantasticFistWorld):
             if current_room.node_name == "The Caves Room 2":
                 if world.secret_coin_requirements[current_secret_index] != 0:
                     world.set_rule(world.get_location("The Caves Load Bearing Collectible"), ITEM_REQUIREMENTS["The Caves Load Bearing Collectible"][world.options.difficulty] & Has("Coin", count = world.secret_coin_requirements[current_secret_index]))
+                world.secret_exit_room_order.append(0)
                 current_secret_index += 1
             elif current_room.node_name == "Verticality Room 2":
                 if world.secret_coin_requirements[current_secret_index] != 0:
                     world.set_rule(world.get_location("Verticality Load Bearing Collectible"), ITEM_REQUIREMENTS["Verticality Load Bearing Collectible"][world.options.difficulty] & Has("Coin", count = world.secret_coin_requirements[current_secret_index]))
+                world.secret_exit_room_order.append(1)
                 current_secret_index += 1
             elif current_room.node_name == "Midnight Grove Room 4":
                 if world.secret_coin_requirements[current_secret_index] != 0:
                     world.set_rule(world.get_location("Midnight Grove Load Bearing Collectible"), ITEM_REQUIREMENTS["Midnight Grove Load Bearing Collectible"][world.options.difficulty] & Has("Coin", count = world.secret_coin_requirements[current_secret_index]))
+                world.secret_exit_room_order.append(2)
                 current_secret_index += 1
             elif current_room.node_name == "Forgotten Archives Room 4":
                 if world.secret_coin_requirements[current_secret_index] != 0:
                     world.set_rule(world.get_location("Forgotten Archives Load Bearing Collectible"), ITEM_REQUIREMENTS["Forgotten Archives Load Bearing Collectible"][world.options.difficulty] & Has("Coin", count = world.secret_coin_requirements[current_secret_index]))
+                world.secret_exit_room_order.append(3)
                 current_secret_index += 1
             elif current_room.node_name == "The Timeless Temple Room 3":
                 if world.secret_coin_requirements[current_secret_index] != 0:
                     world.set_rule(world.get_location("The Timeless Temple Load Bearing Collectible"), ITEM_REQUIREMENTS["The Timeless Temple Load Bearing Collectible"][world.options.difficulty] & Has("Coin", count = world.secret_coin_requirements[current_secret_index]))
+                world.secret_exit_room_order.append(4)
                 current_secret_index += 1
             elif current_room.node_name == "Infinity Garden Room 3":
                 if world.secret_coin_requirements[current_secret_index] != 0:
                     world.set_rule(world.get_location("Infinity Garden Load Bearing Collectible"), ITEM_REQUIREMENTS["Infinity Garden Load Bearing Collectible"][world.options.difficulty] & Has("Coin", count = world.secret_coin_requirements[current_secret_index]))
+                world.secret_exit_room_order.append(5)
                 current_secret_index += 1
 
             for edge in regions.get_edge_from_start_node_name(world.randomized_doors, current_room.node_name):
@@ -3159,19 +3165,20 @@ def set_all_rules(world: FantasticFistWorld):
                 current_room = next_rooms[0]
                 next_rooms.remove(current_room)
 
-        if world.secret_coin_requirements[current_secret_index] != 0:
-            world.set_rule(world.get_entrance("The Looking Glass Room 1 Secret Exit"), Has("Coin", count = world.secret_coin_requirements[current_secret_index]))
+    if world.secret_coin_requirements[current_secret_index] != 0:
+        world.set_rule(world.get_entrance("The Looking Glass Room 1 Secret Exit"), Has("Coin", count = world.secret_coin_requirements[current_secret_index]))
+    world.secret_exit_room_order.append(6)
 
-        if world.boss_coin_requirements[0] != 0:
-            world.set_rule(world.get_entrance("1-8 Entrance"), Has("Coin", count = world.boss_coin_requirements[0]))
-        if world.boss_coin_requirements[1] != 0:
-            world.set_rule(world.get_entrance("2-6 Entrance"), Has("Coin", count = world.boss_coin_requirements[1]))
-        if world.boss_coin_requirements[2] != 0:
-            world.set_rule(world.get_entrance("3-7 Entrance"), Has("Coin", count = world.boss_coin_requirements[2]))
-        if world.boss_coin_requirements[3] != 0:
-            world.set_rule(world.get_entrance("4-9 Entrance"), Has("Coin", count = world.boss_coin_requirements[3]))
-        if world.boss_coin_requirements[4] != 0:
-            world.set_rule(world.get_entrance("5-4 Entrance"), Has("Coin", count = world.boss_coin_requirements[4]))
+    if world.boss_coin_requirements[0] != 0:
+        world.set_rule(world.get_entrance("1-8 Entrance"), Has("Coin", count = world.boss_coin_requirements[0]))
+    if world.boss_coin_requirements[1] != 0:
+        world.set_rule(world.get_entrance("2-6 Entrance"), Has("Coin", count = world.boss_coin_requirements[1]))
+    if world.boss_coin_requirements[2] != 0:
+        world.set_rule(world.get_entrance("3-7 Entrance"), Has("Coin", count = world.boss_coin_requirements[2]))
+    if world.boss_coin_requirements[3] != 0:
+        world.set_rule(world.get_entrance("4-9 Entrance"), Has("Coin", count = world.boss_coin_requirements[3]))
+    if world.boss_coin_requirements[4] != 0:
+        world.set_rule(world.get_entrance("5-4 Entrance"), Has("Coin", count = world.boss_coin_requirements[4]))
 
 
 def set_progressive_path_rules(world: FantasticFistWorld, path_list: dict[tuple[str, str], int], is_secret: bool, modifier: int):
